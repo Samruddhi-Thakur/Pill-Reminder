@@ -27,19 +27,6 @@
       border-radius: 10px;
       font-size: 1.1rem;
     }
-    .btn {
-      background-color: #388e3c;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s ease;
-    }
-    .btn:hover {
-      background-color: #2e7d32;
-    }
   </style>
 </head>
 <body>
@@ -57,10 +44,8 @@
   <section class="reminder-container">
     <h2>Your Medicine Reminders</h2>
     <ul class="reminder-list" id="reminderList">
-      <!-- List will be auto-filled from localStorage -->
+      <!-- List auto-fills from localStorage -->
     </ul>
-
-    <button class="btn" onclick="testNotification()">🔔 Test Reminder</button>
   </section>
 
   <audio id="alarmSound" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg" preload="auto"></audio>
@@ -70,7 +55,7 @@
   </footer>
 
   <script>
-    // Display reminders stored from Add Medicine page
+    // Load stored medicines
     const reminderList = document.getElementById("reminderList");
     const medicines = JSON.parse(localStorage.getItem("medicines")) || [];
 
@@ -85,44 +70,40 @@
       });
     }
 
-    // Allow notifications
+    // Request notification permission
     if ("Notification" in window && Notification.permission !== "granted") {
       Notification.requestPermission();
     }
 
-    // Function to show reminder
+    // Play sound and show alert+notification
     function showReminder(name) {
       const sound = document.getElementById("alarmSound");
       alert(`💊 Time to take your medicine: ${name}`);
-
-      // Try desktop notification
       if (Notification.permission === "granted") {
         new Notification("Medicine Reminder", {
           body: `Time to take your ${name}`,
           icon: "https://cdn-icons-png.flaticon.com/512/2966/2966483.png"
         });
       }
-
-      // Play alarm sound
-      sound.play().catch(err => console.log("Sound blocked:", err));
+      sound.play().catch(err => console.log("Sound blocked until interaction:", err));
     }
 
-    // Manual test button
-    function testNotification() {
-      showReminder("Test Medicine 💊");
-    }
-
-    // Unlock sound after first click (required by browser)
-    document.body.addEventListener('click', () => {
+    // Unlock sound on first click
+    document.body.addEventListener("click", () => {
       const alarmSound = document.getElementById("alarmSound");
       alarmSound.play().then(() => {
         alarmSound.pause();
         alarmSound.currentTime = 0;
-        console.log("🔊 Sound unlocked and ready!");
-      }).catch(() => {
-        console.log("⚠️ Sound will play after user interacts again.");
-      });
+        console.log("🔊 Sound unlocked for PC.");
+      }).catch(() => {});
     }, { once: true });
+
+    // Optional: Example trigger — automatically remind after 10s (for testing)
+    // You can remove this if you don’t want auto reminders
+    setTimeout(() => {
+      if (medicines.length > 0) showReminder(medicines[0].name);
+    }, 10000);
   </script>
 </body>
 </html>
+
