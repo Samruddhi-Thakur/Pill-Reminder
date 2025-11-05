@@ -1,24 +1,28 @@
+/* General Styles */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f2f8ff;
-    color: #222;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #e9f7ef; /* Soft mint green */
+    color: #1b4332;
+    line-height: 1.6;
 }
 
 /* Navbar */
 .navbar {
-    background-color: #0077cc;
+    background-color: #1b6b50; /* Calm green-teal */
     color: white;
-    padding: 1rem;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar h1 {
-    font-size: 1.5rem;
-    margin-left: 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
 }
 
 .navbar ul {
@@ -29,19 +33,21 @@ body {
 }
 
 .navbar ul li {
-    margin: 0 10px;
+    margin: 0 12px;
 }
 
 .navbar ul li a {
     color: white;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
 }
 
 .navbar ul li a.active,
 .navbar ul li a:hover {
-    text-decoration: underline;
+    background-color: #28a745;
 }
 
 /* Home Section */
@@ -51,7 +57,8 @@ body {
 }
 
 .home h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    color: #145a32;
     margin-bottom: 1rem;
 }
 
@@ -59,31 +66,36 @@ body {
     font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto 2rem auto;
-    line-height: 1.5;
+    color: #2d6a4f;
 }
 
+/* Button */
 .btn {
-    background-color: #0077cc;
+    background-color: #28a745;
     color: white;
-    padding: 0.8rem 1.5rem;
+    padding: 1rem 2rem;
     font-size: 1.2rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     text-decoration: none;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .btn:hover {
-    background-color: #005fa3;
+    background-color: #218838;
+    transform: scale(1.05);
 }
 
 /* Footer */
 footer {
     text-align: center;
-    background-color: #0077cc;
+    background-color: #1b6b50;
     color: white;
-    padding: 0.8rem;
+    padding: 1rem;
     position: fixed;
     bottom: 0;
     width: 100%;
+    font-size: 0.95rem;
 }
