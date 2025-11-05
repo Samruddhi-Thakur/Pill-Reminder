@@ -18,18 +18,45 @@
   </nav>
 
   <section class="home">
-    <h2>Add New Medicine 💊</h2>
-    <p>Fill the details below to schedule your medicine reminder.</p>
+    <h2>Add Your Medicine 💊</h2>
+    <p>Enter the medicine name and time to set a reminder.</p>
 
-    <form id="addMedicineForm">
-      <input type="text" placeholder="Medicine Name" required />
-      <input type="time" required />
-      <button type="submit" class="btn">Add Reminder</button>
+    <form id="medicineForm">
+      <input type="text" id="medicineName" placeholder="Enter medicine name" required>
+      <input type="time" id="medicineTime" required>
+      <button type="submit" class="btn">Add Medicine</button>
     </form>
+
+    <p id="message" style="color: green; font-weight: bold;"></p>
+
+    <a href="reminders.html" class="btn" style="margin-top: 1rem;">View All Reminders</a>
   </section>
 
   <footer>
-    <p>© 2025 Smart Pillbox | Stay Healthy 💚</p>
+    <p>© 2025 Smart Pill Reminder | Community Engagement Project</p>
   </footer>
+
+  <script>
+    document.getElementById("medicineForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("medicineName").value.trim();
+      const time = document.getElementById("medicineTime").value;
+
+      if (name && time) {
+        const newMed = { name, time };
+
+        // Save to localStorage
+        const meds = JSON.parse(localStorage.getItem("medicines")) || [];
+        meds.push(newMed);
+        localStorage.setItem("medicines", JSON.stringify(meds));
+
+        // Confirmation message
+        document.getElementById("message").textContent = "✅ Medicine added successfully!";
+        document.getElementById("medicineForm").reset();
+      }
+    });
+  </script>
 </body>
 </html>
+
