@@ -196,3 +196,25 @@ footer {
     font-size: 1rem;
   }
 }
+/* === Reminder Cards === */
+.reminder-card {
+  background-color: #ffffff;
+  border-left: 6px solid #28a745;
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.2s ease;
+}
+
+.reminder-card:hover {
+  transform: scale(1.02);
+}
+
+.reminder-card h3 {
+  margin-top: 0;
+  color: #1b6b50;
+}
+
