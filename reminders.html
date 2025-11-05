@@ -37,7 +37,7 @@
     const reminderList = document.getElementById("reminderList");
     const alarmSound = document.getElementById("alarmSound");
 
-    // Render saved medicines
+    // === Display saved medicines ===
     function renderList() {
       const meds = JSON.parse(localStorage.getItem("medicines")) || [];
       reminderList.innerHTML = "";
@@ -57,6 +57,7 @@
         });
       }
 
+      // Delete medicine
       document.querySelectorAll(".delete-btn").forEach((btn) => {
         btn.addEventListener("click", (e) => {
           const index = e.target.getAttribute("data-index");
@@ -70,7 +71,7 @@
 
     renderList();
 
-    // Clear all button
+    // === Clear all reminders ===
     document.getElementById("clearAll").addEventListener("click", () => {
       if (confirm("Are you sure you want to clear all reminders?")) {
         localStorage.removeItem("medicines");
@@ -78,7 +79,12 @@
       }
     });
 
-    // 🕒 Check time every 30 seconds for reminders
+    // === Request notification permission ===
+    if ("Notification" in window && Notification.permission !== "granted") {
+      Notification.requestPermission();
+    }
+
+    // === Reminder checker (runs every 30 seconds) ===
     function checkReminders() {
       const meds = JSON.parse(localStorage.getItem("medicines")) || [];
       const now = new Date();
@@ -91,15 +97,30 @@
       });
     }
 
-    // 🔔 Show popup + sound
+    // === Show alert + play sound + desktop notification ===
     function showReminder(name) {
-      alert('💊 It's time to take your medicine Dear');
       alarmSound.play();
+
+      // Popup alert
+      alert(`💊 It's time to take your medicine Dear`);
+
+      // Desktop notification
+      if ("Notification" in window && Notification.permission === "granted") {
+        const notification = new Notification("Smart Pillbox Reminder 💊", {
+          body: `It's time to take ${name}!`,
+          icon: "https://cdn-icons-png.flaticon.com/512/2966/2966327.png"
+        });
+
+        // Optional: stop sound when user clicks notification
+        notification.onclick = () => {
+          alarmSound.pause();
+          alarmSound.currentTime = 0;
+        };
+      }
     }
 
-    // Start checking every 30s
+    // Check every 30 seconds
     setInterval(checkReminders, 30000);
   </script>
 </body>
 </html>
-
