@@ -27,6 +27,20 @@
       border-radius: 10px;
       font-size: 1.1rem;
     }
+    .btn {
+      background-color: #388e3c;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+      margin-top: 15px;
+    }
+    .btn:hover {
+      background-color: #2e7d32;
+    }
   </style>
 </head>
 <body>
@@ -44,8 +58,9 @@
   <section class="reminder-container">
     <h2>Your Medicine Reminders</h2>
     <ul class="reminder-list" id="reminderList">
-      <!-- List auto-fills from localStorage -->
+      <!-- Filled automatically from localStorage -->
     </ul>
+    <button class="btn" onclick="clearReminders()">🗑️ Clear All Reminders</button>
   </section>
 
   <audio id="alarmSound" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg" preload="auto"></audio>
@@ -55,19 +70,30 @@
   </footer>
 
   <script>
-    // Load stored medicines
     const reminderList = document.getElementById("reminderList");
     const medicines = JSON.parse(localStorage.getItem("medicines")) || [];
 
-    if (medicines.length === 0) {
-      reminderList.innerHTML = "<li>No medicines added yet.</li>";
-    } else {
-      medicines.forEach(med => {
-        const li = document.createElement("li");
-        li.className = "reminder-item";
-        li.textContent = `${med.name} - ${med.time}`;
-        reminderList.appendChild(li);
-      });
+    // Display all saved reminders
+    function loadReminders() {
+      reminderList.innerHTML = "";
+      if (medicines.length === 0) {
+        reminderList.innerHTML = "<li>No medicines added yet.</li>";
+      } else {
+        medicines.forEach((med, index) => {
+          const li = document.createElement("li");
+          li.className = "reminder-item";
+          li.textContent = `${med.name} - ${med.time}`;
+          reminderList.appendChild(li);
+        });
+      }
+    }
+
+    // Clear all reminders
+    function clearReminders() {
+      if (confirm("Are you sure you want to clear all reminders?")) {
+        localStorage.removeItem("medicines");
+        reminderList.innerHTML = "<li>All reminders cleared.</li>";
+      }
     }
 
     // Request notification permission
@@ -75,20 +101,22 @@
       Notification.requestPermission();
     }
 
-    // Play sound and show alert+notification
+    // Function to show reminder
     function showReminder(name) {
       const sound = document.getElementById("alarmSound");
       alert(`💊 Time to take your medicine: ${name}`);
+
       if (Notification.permission === "granted") {
         new Notification("Medicine Reminder", {
           body: `Time to take your ${name}`,
           icon: "https://cdn-icons-png.flaticon.com/512/2966/2966483.png"
         });
       }
-      sound.play().catch(err => console.log("Sound blocked until interaction:", err));
+
+      sound.play().catch(err => console.log("Sound blocked:", err));
     }
 
-    // Unlock sound on first click
+    // Unlock sound after first click
     document.body.addEventListener("click", () => {
       const alarmSound = document.getElementById("alarmSound");
       alarmSound.play().then(() => {
@@ -98,11 +126,12 @@
       }).catch(() => {});
     }, { once: true });
 
-    // Optional: Example trigger — automatically remind after 10s (for testing)
-    // You can remove this if you don’t want auto reminders
-    setTimeout(() => {
-      if (medicines.length > 0) showReminder(medicines[0].name);
-    }, 10000);
+    // Auto test: Trigger a reminder after 10s for demo
+    if (medicines.length > 0) {
+      setTimeout(() => showReminder(medicines[0].name), 10000);
+    }
+
+    loadReminders();
   </script>
 </body>
 </html>
