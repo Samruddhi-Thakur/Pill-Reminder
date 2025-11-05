@@ -142,14 +142,31 @@ input:focus {
   flex-wrap: wrap;
 }
 
-/* === Footer === */
+/* === Footer (Fixed to Bottom on Desktop) === */
 footer {
-  text-align: center;
   background-color: #1b6b50;
   color: white;
+  text-align: center;
   padding: 0.8rem;
   font-size: 0.95rem;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: auto;
 }
+
+/* === Make Page Fill Full Height === */
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensures main content pushes footer to bottom */
+.home {
+  flex: 1;
+}
+
 
 /* === Responsive Navbar === */
 @media (max-width: 768px) {
