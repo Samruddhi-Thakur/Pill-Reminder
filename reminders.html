@@ -30,9 +30,14 @@
     <p>© 2025 Smart Pill Reminder | Community Engagement Project</p>
   </footer>
 
+  <!-- Gentle alarm sound -->
+  <audio id="alarmSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6d6e0a3b7b.mp3?filename=soft-notification-229572.mp3" preload="auto"></audio>
+
   <script>
     const reminderList = document.getElementById("reminderList");
+    const alarmSound = document.getElementById("alarmSound");
 
+    // Render saved medicines
     function renderList() {
       const meds = JSON.parse(localStorage.getItem("medicines")) || [];
       reminderList.innerHTML = "";
@@ -65,12 +70,36 @@
 
     renderList();
 
+    // Clear all button
     document.getElementById("clearAll").addEventListener("click", () => {
       if (confirm("Are you sure you want to clear all reminders?")) {
         localStorage.removeItem("medicines");
         renderList();
       }
     });
+
+    // 🕒 Check time every 30 seconds for reminders
+    function checkReminders() {
+      const meds = JSON.parse(localStorage.getItem("medicines")) || [];
+      const now = new Date();
+      const currentTime = now.toTimeString().slice(0, 5); // HH:MM format
+
+      meds.forEach((med) => {
+        if (med.time === currentTime) {
+          showReminder(med.name);
+        }
+      });
+    }
+
+    // 🔔 Show popup + sound
+    function showReminder(name) {
+      alert('💊 It's time to take your medicine Dear');
+      alarmSound.play();
+    }
+
+    // Start checking every 30s
+    setInterval(checkReminders, 30000);
   </script>
 </body>
 </html>
+
