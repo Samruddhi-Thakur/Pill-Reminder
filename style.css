@@ -1,186 +1,198 @@
 /* === General Styles === */
 body {
-    margin: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background-color: #e9f7ef; /* soft mint */
-    color: #1b4332;
-    line-height: 1.6;
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #e9f7ef;
+  color: #1b4332;
+  line-height: 1.6;
 }
 
 /* === Navbar === */
 .navbar {
-    background-color: #1b6b50;
-    color: white;
-    padding: 1rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #1b6b50;
+  color: white;
+  padding: 1rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .navbar h1 {
-    font-size: 1.5rem;
-    margin: 0;
+  font-size: 1.5rem;
+  margin: 0;
+  flex: 1 1 auto;
 }
 
+/* Navbar menu */
 .navbar ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+  flex: 1 1 auto;
 }
 
 .navbar ul li {
-    margin: 6px 8px;
+  margin-left: 12px;
 }
 
 .navbar ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    padding: 0.5rem 0.8rem;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
 }
 
 .navbar ul li a.active,
 .navbar ul li a:hover {
-    background-color: #28a745;
+  background-color: #28a745;
 }
 
-/* === Home / Section === */
+/* === Home Section === */
 .home {
-    text-align: center;
-    padding: 3rem 1.5rem;
+  text-align: center;
+  padding: 3rem 1.5rem;
 }
 
 .home h2 {
-    font-size: 2rem;
-    color: #145a32;
-    margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #145a32;
+  margin-bottom: 1rem;
 }
 
 .home p {
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto 2rem auto;
-    color: #2d6a4f;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+  color: #2d6a4f;
 }
 
-/* === Form Styles (Scheduler Page) === */
+/* === Form (Scheduler) === */
 form {
-    background-color: #ffffff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    max-width: 400px;
-    margin: 0 auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 1rem auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 input[type="text"],
 input[type="time"] {
-    width: 90%;
-    padding: 0.8rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid #b7e4c7;
-    border-radius: 8px;
-    background-color: #f6fffa;
-    outline: none;
+  width: 90%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #b7e4c7;
+  border-radius: 8px;
+  background-color: #f6fffa;
+  outline: none;
 }
 
 input:focus {
-    border-color: #28a745;
+  border-color: #28a745;
 }
 
 /* === Button === */
 .btn {
-    background-color: #28a745;
-    color: white;
-    padding: 0.8rem 1.4rem;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 10px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  background-color: #28a745;
+  color: white;
+  padding: 0.8rem 1.4rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
 .btn:hover {
-    background-color: #218838;
-    transform: scale(1.05);
+  background-color: #218838;
+  transform: scale(1.05);
 }
 
 /* === Medicine List === */
 #medicineList {
-    list-style: none;
-    padding: 0;
-    margin: 1.5rem auto;
-    max-width: 500px;
-    text-align: left;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem auto;
+  max-width: 500px;
+  text-align: left;
 }
 
 #medicineList li {
-    background-color: #d8f3dc;
-    margin-bottom: 10px;
-    padding: 10px 14px;
-    border-radius: 10px;
-    font-size: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+  background-color: #d8f3dc;
+  margin-bottom: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 /* === Footer === */
 footer {
-    text-align: center;
-    background-color: #1b6b50;
-    color: white;
-    padding: 0.8rem;
-    font-size: 0.95rem;
+  text-align: center;
+  background-color: #1b6b50;
+  color: white;
+  padding: 0.8rem;
+  font-size: 0.95rem;
 }
 
-/* === Responsive Design === */
+/* === Responsive Navbar === */
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .navbar ul {
-        flex-direction: column;
-        width: 100%;
-    }
+  .navbar h1 {
+    margin-bottom: 0.5rem;
+  }
 
-    .navbar ul li {
-        margin: 8px 0;
-    }
+  .navbar ul {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+  }
 
-    .home h2 {
-        font-size: 1.6rem;
-    }
+  .navbar ul li {
+    margin: 6px 0;
+  }
 
-    .home p {
-        font-size: 1rem;
-    }
+  .home h2 {
+    font-size: 1.6rem;
+  }
 
-    form {
-        width: 95%;
-    }
+  .home p {
+    font-size: 1rem;
+  }
 
-    #medicineList li {
-        font-size: 0.95rem;
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  form {
+    width: 90%;
+  }
 
-    .btn {
-        width: 100%;
-        text-align: center;
-        font-size: 1rem;
-    }
+  #medicineList li {
+    font-size: 0.95rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+  }
 }
-
