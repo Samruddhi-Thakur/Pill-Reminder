@@ -122,5 +122,19 @@
     // Check every 30 seconds
     setInterval(checkReminders, 30000);
   </script>
+  <script>
+  // Ask user once to enable sound
+  document.body.addEventListener('click', () => {
+    const alarmSound = document.getElementById("alarmSound");
+    alarmSound.play().then(() => {
+      alarmSound.pause();
+      alarmSound.currentTime = 0;
+      console.log("🔊 Sound unlocked and ready to play!");
+    }).catch(() => {
+      console.log("⚠️ Sound will play after user interacts again.");
+    });
+  }, { once: true });
+</script>
+
 </body>
 </html>
