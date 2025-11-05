@@ -234,4 +234,71 @@ html, body {
   margin-top: 0;
   color: #1b6b50;
 }
+/* === Info Section Styles === */
+.info-section {
+  text-align: center;
+  background-color: #eaf7f0;
+  padding: 2rem 1rem;
+}
+
+.info-section h2 {
+  color: #1b6b50;
+  margin-bottom: 1.5rem;
+}
+
+.info-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  max-width: 300px;
+  flex: 1 1 250px;
+}
+
+.card h3 {
+  color: #1b6b50;
+}
+
+/* === Why Section === */
+.why-section {
+  background-color: #dff3e5;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.why-section h2 {
+  color: #1b6b50;
+  margin-bottom: 1rem;
+}
+
+.why-section ul {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: auto;
+  text-align: left;
+}
+
+.why-section li {
+  background: white;
+  padding: 0.8rem 1rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Responsive Fix */
+@media (max-width: 768px) {
+  .info-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
