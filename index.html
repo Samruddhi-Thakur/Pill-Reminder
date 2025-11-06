@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart Pillbox - Home</title>
+  <title>Smart Pill Reminder</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
@@ -65,29 +65,46 @@
       color: #333;
     }
 
-    .how-it-works {
+    .info-section {
       background-color: #e8f5e9;
       padding: 40px 20px;
       text-align: center;
       border-radius: 15px;
       margin: 40px auto;
-      max-width: 800px;
+      max-width: 900px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    .how-it-works h3 {
+    .info-section h2 {
       color: #2e7d32;
       font-size: 1.8rem;
       margin-bottom: 20px;
     }
 
-    .steps {
-      text-align: left;
-      margin: 0 auto;
-      max-width: 600px;
+    .info-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .card {
+      background: #c8e6c9;
+      border-radius: 12px;
+      padding: 20px;
+      width: 260px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      color: #1b5e20;
+      font-size: 1.1rem;
+    }
+
+    .card p {
+      font-size: 1rem;
       color: #333;
-      font-size: 1.05rem;
-      line-height: 1.7;
+      line-height: 1.5;
     }
 
     .btn {
@@ -106,26 +123,48 @@
       background-color: #2e7d32;
     }
 
+    .why-section {
+      text-align: center;
+      margin: 50px auto;
+      max-width: 800px;
+      padding: 20px;
+    }
+
+    .why-section h2 {
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+
+    .why-section ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+      display: inline-block;
+      font-size: 1.05rem;
+      color: #333;
+      line-height: 1.8;
+    }
+
     footer {
       background-color: #388e3c;
       color: white;
       text-align: center;
       padding: 12px;
-      margin-top: 60px;
+      margin-top: 40px;
       font-size: 0.95rem;
     }
 
-    @media (max-width: 600px) {
-      .home h2 {
-        font-size: 1.6rem;
+    @media (max-width: 700px) {
+      .info-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      .card {
+        width: 90%;
       }
       .navbar ul {
         flex-direction: column;
         align-items: flex-start;
-      }
-      .how-it-works {
-        margin: 20px;
-        padding: 25px;
       }
     }
   </style>
@@ -144,25 +183,50 @@
 
   <!-- Home Section -->
   <section class="home">
-    <h2>Welcome to Smart Pill Reminder</h2>
-    <p>
-      This easy-to-use system helps you take your medicines on time with clear reminders and alerts. Designed specially for elderly users, it ensures you never miss a dose again — keeping you and your loved ones healthy and safe.
-    </p>
+    <div class="content">
+      <h2>Welcome to Smart Pill Reminder 💊</h2>
+      <p>
+        The Smart Pillbox is a simple and user-friendly web system designed to
+        help elderly people remember their daily medicines. With easy
+        reminders, alerts, and notifications, you’ll never miss a dose again!
+      </p>
+    </div>
   </section>
 
   <!-- How It Works Section -->
-  <section class="how-it-works">
-    <h3>How It Works</h3>
-    <div class="steps">
-      <p>1️⃣ Add your medicine name and the time you need to take it.</p>
-      <p>2️⃣ The system stores your schedule securely in your browser.</p>
-      <p>3️⃣ When it's time, you’ll receive a gentle alert and sound reminder.</p>
-      <p>4️⃣ You can view or clear all your reminders anytime.</p>
+  <section class="info-section">
+    <h2>How It Works ⚙️</h2>
+    <div class="info-cards">
+      <div class="card">
+        <h3>💊 Step 1: Add Medicines</h3>
+        <p>Enter your medicine name and time using the “Add Medicine” page. You can add as many medicines as you need.</p>
+      </div>
+      <div class="card">
+        <h3>⏰ Step 2: Get Reminders</h3>
+        <p>When it’s time, you’ll receive a pop-up alert, a soft alarm, and a desktop notification reminding you to take your dose.</p>
+      </div>
+      <div class="card">
+        <h3>📋 Step 3: Track Easily</h3>
+        <p>All your medicine reminders are listed clearly on the “Reminders” page, where you can view or delete them anytime.</p>
+      </div>
     </div>
 
+    <!-- ✅ Get Started moved below How It Works -->
     <a href="add.html" class="btn">Get Started</a>
   </section>
 
+  <!-- Why It's Useful Section -->
+  <section class="why-section">
+    <h2>Why Smart Pillbox? 🌿</h2>
+    <ul>
+      <li>✅ Helps elderly users manage daily medicines effortlessly</li>
+      <li>✅ Prevents missed doses and overdose mistakes</li>
+      <li>✅ Works directly in any browser—no installation needed</li>
+      <li>✅ Simple, clean, and large-text design for easy use</li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <p>© 2025 Smart Pill Reminder | Community Engagement Project</p>
   </footer>
