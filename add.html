@@ -18,43 +18,58 @@
   </nav>
 
   <section class="home">
-    <h2>Add Your Medicine 💊</h2>
-    <p>Enter the medicine name and time to set a reminder.</p>
+    <div class="container">
+      <h2>Add Your Medicine 💊</h2>
+      <p>Enter the medicine name and time to set a reminder.</p>
 
-<form id="medicineForm" class="input-card">
-  <input type="text" id="medicineName" placeholder="Enter medicine name" class="input-style" required>
-  <input type="time" id="medicineTime" class="input-style" required>
-  <button type="submit" class="add-btn">Add Medicine</button>
-</form>
+      <form id="medicineForm" class="input-card">
+        <div class="input-group">
+          <input type="text" id="medicineName" placeholder="Enter medicine name" class="input-style" required>
+        </div>
+        
+        <div class="input-group">
+          <input type="time" id="medicineTime" class="input-style" required>
+        </div>
+        
+        <button type="submit" class="add-btn">Add Medicine</button>
+      </form>
 
-    <p id="message" style="color: green; font-weight: bold; margin-top: 10px;"></p>
+      <p id="message" style="color: #28a745; font-weight: bold; margin-top: 15px;"></p>
 
-    <a href="reminders.html" class="btn" style="margin-top: 1rem;">View All Reminders</a>
+      <a href="reminders.html" class="btn-link" style="margin-top: 1.5rem; display: inline-block;">View All Reminders</a>
+    </div>
   </section>
 
   <footer>
-    <p>© 2025 Smart Pill Reminder | Community Engagement Project</p>
+    <p>© 2026 Smart Pill Reminder | Community Engagement Project</p>
   </footer>
 
- <script>
-  document.getElementById("medicineForm").addEventListener("submit", function(e) {
-    // This line is the most important! It stops the browser from reloading/405 error
-    e.preventDefault(); 
+  <script>
+    document.getElementById("medicineForm").addEventListener("submit", function(e) {
+      // CRITICAL: This line stops the 405 Not Allowed error by preventing 
+      // the browser from trying to find a backend server.
+      e.preventDefault();
 
-    const name = document.getElementById("medicineName").value.trim();
-    const time = document.getElementById("medicineTime").value;
+      const name = document.getElementById("medicineName").value.trim();
+      const time = document.getElementById("medicineTime").value;
 
-    if (name && time) {
-      // Save data to the browser's memory (LocalStorage)
-      const meds = JSON.parse(localStorage.getItem("medicines")) || [];
-      meds.push({ name, time });
-      localStorage.setItem("medicines", JSON.stringify(meds));
+      if (name && time) {
+        // 1. Save to LocalStorage (This works on GitHub Pages/Browsers)
+        const meds = JSON.parse(localStorage.getItem("medicines")) || [];
+        meds.push({ name, time });
+        localStorage.setItem("medicines", JSON.stringify(meds));
 
-      // Show success and clear form
-      document.getElementById("message").textContent = "✅ Medicine added successfully!";
-      document.getElementById("medicineForm").reset();
-    }
-  });
-</script>
+        // 2. Visual feedback
+        const messageEl = document.getElementById("message");
+        messageEl.textContent = "✅ " + name + " added successfully!";
+        
+        // 3. Clear the form for the next entry
+        document.getElementById("medicineForm").reset();
+
+        // Optional: Hide message after 3 seconds
+        setTimeout(() => { messageEl.textContent = ""; }, 3000);
+      }
+    });
+  </script>
 </body>
 </html>
