@@ -21,15 +21,15 @@
     <h2>Add Your Medicine 💊</h2>
     <p>Enter the medicine name and time to set a reminder.</p>
 
-   <form action="/pill-reminder" method="POST">
-    <input type="text" name="pillName" placeholder="Enter medicine name" class="input-style" required>
-    
-    <input type="time" name="time" class="input-style" required>
-    
-    <button type="submit" class="add-btn">Add Medicine</button>
-</form>
+    <form id="medicineForm" action="/pill-reminder" method="POST" class="input-card">
+      <input type="text" id="medicineName" name="pillName" placeholder="Enter medicine name" class="input-style" required>
+      
+      <input type="time" id="medicineTime" name="time" class="input-style" required>
+      
+      <button type="submit" class="add-btn">Add Medicine</button>
+    </form>
 
-    <p id="message" style="color: green; font-weight: bold;"></p>
+    <p id="message" style="color: green; font-weight: bold; margin-top: 10px;"></p>
 
     <a href="reminders.html" class="btn" style="margin-top: 1rem;">View All Reminders</a>
   </section>
@@ -39,26 +39,23 @@
   </footer>
 
   <script>
+    // This script handles the "Success" message when you click the button
     document.getElementById("medicineForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
       const name = document.getElementById("medicineName").value.trim();
       const time = document.getElementById("medicineTime").value;
 
       if (name && time) {
-        const newMed = { name, time };
-
-        // Save to localStorage
+        // Save to localStorage so it shows up on your Reminders page immediately
         const meds = JSON.parse(localStorage.getItem("medicines")) || [];
-        meds.push(newMed);
+        meds.push({ name, time });
         localStorage.setItem("medicines", JSON.stringify(meds));
 
-        // Confirmation message
+        // Show success message
         document.getElementById("message").textContent = "✅ Medicine added successfully!";
-        document.getElementById("medicineForm").reset();
+        
+        // Note: The form will still submit to the Java backend because of action="/pill-reminder"
       }
     });
   </script>
 </body>
 </html>
-
