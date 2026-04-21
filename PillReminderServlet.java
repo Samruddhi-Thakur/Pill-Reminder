@@ -26,6 +26,28 @@ public class PillReminderServlet extends HttpServlet {
         out.println("<h3>Reminder for " + pillName + " saved successfully!</h3>");
         out.println("<a href='index.html'>Go Back</a>");
         out.println("</body></html>");
+        // Inside your doPost method
+try {
+    // 1. Load the Driver (The translator)
+    Class.forName("com.mysql.cj.jdbc.Driver");
+
+    // 2. Establish connection (The phone call to the DB)
+    Connection conn = DriverManager.getConnection(
+        "jdbc:mysql://localhost:3306/pill_db", "root", "yourpassword");
+
+    // 3. Prepare the SQL (The instruction)
+    String sql = "INSERT INTO reminders (pill_name, pill_time) VALUES (?, ?)";
+    PreparedStatement pstmt = conn.prepareStatement(sql);
+    pstmt.setString(1, pillName);
+    pstmt.setString(2, time);
+
+    // 4. Execute
+    pstmt.executeUpdate();
+    
+    conn.close();
+} catch (Exception e) {
+    e.printStackTrace();
+}
     }
 
     @Override
