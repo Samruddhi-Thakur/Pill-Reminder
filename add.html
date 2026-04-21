@@ -21,15 +21,13 @@
     <h2>Add Your Medicine 💊</h2>
     <p>Enter the medicine name and time to set a reminder.</p>
 
-    <form id="medicineForm">
-      <input type="text" id="medicineName" placeholder="Enter medicine name" required>
-      <input type="time" id="medicineTime" required>
-      <button type="submit" class="btn">Add Medicine</button>
-      <form action="/pill-reminder" method="POST">
-    <input type="text" name="pillName" placeholder="Pill Name" required>
-    <input type="time" name="time" required>
-    <button type="submit">Set Reminder</button>
-    </form>
+   <form action="/pill-reminder" method="POST">
+    <input type="text" name="pillName" placeholder="Enter medicine name" class="input-style" required>
+    
+    <input type="time" name="time" class="input-style" required>
+    
+    <button type="submit" class="add-btn">Add Medicine</button>
+</form>
 
     <p id="message" style="color: green; font-weight: bold;"></p>
 
