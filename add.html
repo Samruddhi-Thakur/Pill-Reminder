@@ -23,20 +23,14 @@
       <p>Enter the medicine name and time to set a reminder.</p>
 
       <form id="medicineForm" class="input-card">
-        <div class="input-group">
-          <input type="text" id="medicineName" placeholder="Enter medicine name" class="input-style" required>
-        </div>
-        
-        <div class="input-group">
-          <input type="time" id="medicineTime" class="input-style" required>
-        </div>
-        
+        <input type="text" id="medicineName" placeholder="Enter medicine name" class="input-style" required>
+        <input type="time" id="medicineTime" class="input-style" required>
         <button type="submit" class="add-btn">Add Medicine</button>
       </form>
 
-      <p id="message" style="color: #28a745; font-weight: bold; margin-top: 15px;"></p>
+      <p id="message" style="color: green; font-weight: bold; margin-top: 1rem;"></p>
 
-      <a href="reminders.html" class="btn-link" style="margin-top: 1.5rem; display: inline-block;">View All Reminders</a>
+      <a href="reminders.html" class="btn" style="margin-top: 1rem; display: inline-block;">View All Reminders</a>
     </div>
   </section>
 
@@ -46,28 +40,28 @@
 
   <script>
     document.getElementById("medicineForm").addEventListener("submit", function(e) {
-      // CRITICAL: This line stops the 405 Not Allowed error by preventing 
-      // the browser from trying to find a backend server.
-      e.preventDefault();
+      e.preventDefault(); // This stops the page from refreshing or looking for a server
 
       const name = document.getElementById("medicineName").value.trim();
       const time = document.getElementById("medicineTime").value;
 
       if (name && time) {
-        // 1. Save to LocalStorage (This works on GitHub Pages/Browsers)
+        // Save to the browser's local storage
         const meds = JSON.parse(localStorage.getItem("medicines")) || [];
         meds.push({ name, time });
         localStorage.setItem("medicines", JSON.stringify(meds));
 
-        // 2. Visual feedback
-        const messageEl = document.getElementById("message");
-        messageEl.textContent = "✅ " + name + " added successfully!";
+        // Show confirmation
+        const message = document.getElementById("message");
+        message.textContent = "✅ Medicine added successfully!";
         
-        // 3. Clear the form for the next entry
+        // Reset the form
         document.getElementById("medicineForm").reset();
 
-        // Optional: Hide message after 3 seconds
-        setTimeout(() => { messageEl.textContent = ""; }, 3000);
+        // Clear message after 3 seconds
+        setTimeout(() => {
+          message.textContent = "";
+        }, 3000);
       }
     });
   </script>
