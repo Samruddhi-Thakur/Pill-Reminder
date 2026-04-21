@@ -21,12 +21,11 @@
     <h2>Add Your Medicine 💊</h2>
     <p>Enter the medicine name and time to set a reminder.</p>
 
-<form id="medicineForm" class="input-card">      <input type="text" id="medicineName" name="pillName" placeholder="Enter medicine name" class="input-style" required>
-      
-      <input type="time" id="medicineTime" name="time" class="input-style" required>
-      
-      <button type="submit" class="add-btn">Add Medicine</button>
-    </form>
+<form id="medicineForm" class="input-card">
+  <input type="text" id="medicineName" placeholder="Enter medicine name" class="input-style" required>
+  <input type="time" id="medicineTime" class="input-style" required>
+  <button type="submit" class="add-btn">Add Medicine</button>
+</form>
 
     <p id="message" style="color: green; font-weight: bold; margin-top: 10px;"></p>
 
@@ -37,24 +36,25 @@
     <p>© 2025 Smart Pill Reminder | Community Engagement Project</p>
   </footer>
 
-  <script>
-    // This script handles the "Success" message when you click the button
-    document.getElementById("medicineForm").addEventListener("submit", function(e) {
-      const name = document.getElementById("medicineName").value.trim();
-      const time = document.getElementById("medicineTime").value;
+ <script>
+  document.getElementById("medicineForm").addEventListener("submit", function(e) {
+    // This line is the most important! It stops the browser from reloading/405 error
+    e.preventDefault(); 
 
-      if (name && time) {
-        // Save to localStorage so it shows up on your Reminders page immediately
-        const meds = JSON.parse(localStorage.getItem("medicines")) || [];
-        meds.push({ name, time });
-        localStorage.setItem("medicines", JSON.stringify(meds));
+    const name = document.getElementById("medicineName").value.trim();
+    const time = document.getElementById("medicineTime").value;
 
-        // Show success message
-        document.getElementById("message").textContent = "✅ Medicine added successfully!";
-        
-        // Note: The form will still submit to the Java backend because of action="/pill-reminder"
-      }
-    });
-  </script>
+    if (name && time) {
+      // Save data to the browser's memory (LocalStorage)
+      const meds = JSON.parse(localStorage.getItem("medicines")) || [];
+      meds.push({ name, time });
+      localStorage.setItem("medicines", JSON.stringify(meds));
+
+      // Show success and clear form
+      document.getElementById("message").textContent = "✅ Medicine added successfully!";
+      document.getElementById("medicineForm").reset();
+    }
+  });
+</script>
 </body>
 </html>
